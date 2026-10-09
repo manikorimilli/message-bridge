@@ -1,4 +1,4 @@
-package com.example.message_bridge.controller;
+package com.example.message_bridge.model;
 
 public enum MessageType {
     SMS,
