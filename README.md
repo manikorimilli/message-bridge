@@ -127,5 +127,8 @@ secrets are passed in at run time with `--env-file` or `-e`.
 5. Create the service. Render builds the image, sets `PORT`, and gives you a URL like
    `https://message-bridge.onrender.com`. Every push to the main branch redeploys.
 
+Browsers may call the API from any website by default. To allow only your UI, set
+`CORS_ALLOWED_ORIGINS` to its URL, for example `https://message-bridge-ui.vercel.app`.
+
 On the free plan the service sleeps after 15 minutes without traffic, and the next
 request waits about a minute while it starts again. Open the URL once before a demo.

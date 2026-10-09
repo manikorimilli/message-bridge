@@ -6,7 +6,9 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -97,6 +99,16 @@ class MessageControllerTest {
                 new MessageRequest(MessageType.SMS, "+14155550100", "hello"));
 
         assertThat(response.messageId()).isEqualTo("SM123");
+    }
+
+    @Test
+    void allowsBrowserCallsFromOtherOrigins() throws Exception {
+        mockMvc.perform(options("/v1/message")
+                        .header("Origin", "https://message-bridge-ui.vercel.app")
+                        .header("Access-Control-Request-Method", "POST")
+                        .header("Access-Control-Request-Headers", "content-type"))
+                .andExpect(status().isOk())
+                .andExpect(header().string("Access-Control-Allow-Origin", "https://message-bridge-ui.vercel.app"));
     }
 
     @Test
