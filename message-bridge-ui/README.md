@@ -1,7 +1,7 @@
 # message-bridge-ui
 
-A one-page UI for testing the message-bridge API (the Spring Boot app in the parent folder): pick a channel, enter a recipient and a message, and send. Built with React,
-Vite, Tailwind CSS v4 and [coss ui](https://coss.com/ui) components.
+A one-page UI for testing the message-bridge API (the Spring Boot app in the parent folder): pick a channel, enter a recipient and a message, and send. Plain React + Vite with one
+CSS file; no UI libraries.
 
 ## Run locally
 
@@ -37,10 +37,16 @@ pnpm build     # typecheck, then production build into dist/
 own origin and needs no CORS setup. If the API moves, change the URL there and in
 `vite.config.ts`.
 
+## Files
+
+```
+src/App.tsx   the form
+src/api.ts    the one API call (POST /v1/message)
+src/App.css   styles
+```
+
 ## Notes
 
 - On a Twilio trial account the message must be a template name such as
   `sms_2fa` or `sms_internal_alerts`, and the number must be verified in Twilio.
 - Render's free plan sleeps when idle; the first request can take about a minute.
-- Components in `src/components/ui` come from the coss ui registry
-  (`pnpm dlx shadcn@4.21.4 add @coss/<name>`); update them with the CLI, not by hand.

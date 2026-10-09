@@ -9,7 +9,7 @@ Nothing is stored. Every request is handled on its own.
 ## Frontend
 
 A small test page lives in [`message-bridge-ui/`](message-bridge-ui/README.md)
-(React + coss ui). It is deployed separately on Vercel and is not part of the
+(plain React + Vite). It is deployed separately on Vercel and is not part of the
 backend's Docker image.
 
 ## Requirements
