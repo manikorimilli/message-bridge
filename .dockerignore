@@ -7,3 +7,6 @@
 *.iml
 target
 HELP.md
+
+# The frontend lives here but is deployed separately (Vercel).
+message-bridge-ui
